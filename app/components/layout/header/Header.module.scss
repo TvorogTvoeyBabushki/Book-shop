@@ -1,0 +1,46 @@
+@import '@/styles/variables';
+
+.header {
+	padding: 40px 0;
+
+	.wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.logo {
+			font-size: 1.5rem;
+			color: $black;
+			cursor: pointer;
+		}
+
+		.nav {
+			> ul {
+				display: flex;
+				gap: 40px;
+
+				> li {
+					text-transform: uppercase;
+					transition: all 0.4s ease-in-out;
+
+					&:hover {
+						color: $black;
+						font-weight: 900;
+					}
+				}
+			}
+		}
+
+		.panel {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			max-width: 120px;
+
+			> button {
+				padding: 2px;
+			}
+		}
+	}
+}
