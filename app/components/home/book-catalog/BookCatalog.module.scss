@@ -1,0 +1,13 @@
+.book_catalog {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: 96px 76px;
+	padding-top: 45px;
+
+	.load_btn {
+		width: 90%;
+		display: flex;
+		justify-content: center;
+	}
+}

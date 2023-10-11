@@ -1,6 +1,7 @@
 'use client'
 
 import { Fragment, FunctionComponent } from 'react'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import clsx from 'clsx'
 
@@ -32,13 +33,19 @@ const Slider: FunctionComponent = () => {
 				{imageData.map((image, index) => (
 					<Fragment key={index}>
 						{index === activeSlideElm && (
-							<Image
-								src={image}
-								alt='slider image'
-								width={1120}
-								height={702}
-								priority={true}
-							/>
+							<motion.div
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								transition={{ duration: 1 }}
+							>
+								<Image
+									src={image}
+									alt='slider image'
+									width={1120}
+									height={702}
+									priority={true}
+								/>
+							</motion.div>
 						)}
 					</Fragment>
 				))}

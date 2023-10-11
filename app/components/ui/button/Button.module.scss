@@ -1,0 +1,16 @@
+@import '@/styles/variables';
+
+.btn {
+	width: 100%;
+	max-width: 176px;
+	padding: 18px 0;
+	border: 1px solid $purple;
+	color: $purple;
+	text-transform: uppercase;
+	transition: all 0.4s ease-in-out;
+
+	&:hover {
+		border-color: $btn-hover;
+		color: $gray;
+	}
+}

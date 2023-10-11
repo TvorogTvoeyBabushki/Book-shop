@@ -1,19 +1,11 @@
 import { NextPage } from 'next'
-import clsx from 'clsx'
 
-import Layout from './components/layout/Layout'
+import BookCatalog from './components/home/book-catalog/BookCatalog'
+import Categories from './components/home/categories/Categories'
 import Slider from './components/ui/slider/Slider'
+import Promo from './components/home/promo/Promo'
+import Layout from './components/layout/Layout'
 import styles from './styles/Home.module.scss'
-
-interface IPromoElsProps {
-	title: string
-	variant: string
-}
-
-const promoEls: IPromoElsProps[] = [
-	{ title: 'Change old book on new', variant: 'purple_light-block' },
-	{ title: 'top 100 books 2022', variant: 'pink-block' }
-]
 
 const Home: NextPage = () => {
 	return (
@@ -22,22 +14,17 @@ const Home: NextPage = () => {
 				<div className='container'>
 					<section className={styles.slider_wrapper}>
 						<Slider />
-						{promoEls.map(promo => (
-							<a key={promo.variant} href='#'>
-								<div
-									className={clsx(styles.promo, {
-										[styles.purple_light]:
-											promo.variant === 'purple_light-block',
-										[styles.pink]: promo.variant === 'pink-block'
-									})}
-								>
-									<p>{promo.title}</p>
-									<img src='/arrow-long.svg' alt='arrow' />
-								</div>
-							</a>
-						))}
+						<Promo />
 					</section>
 				</div>
+				<section className={styles.book_wrapper}>
+					<div>
+						<Categories />
+					</div>
+					<div className='container'>
+						<BookCatalog />
+					</div>
+				</section>
 			</main>
 		</Layout>
 	)
