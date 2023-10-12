@@ -36,7 +36,7 @@ const Header: FunctionComponent = () => {
 					</nav>
 
 					<div className={styles.panel}>
-						<button>
+						<button onClick={() => push('/pages/profile')}>
 							<img src='/user.svg' alt='user' />
 						</button>
 						<button onClick={() => push('/pages/shopping-cart')}>
