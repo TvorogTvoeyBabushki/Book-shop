@@ -26,17 +26,6 @@
 			margin-bottom: 3px;
 		}
 
-		.rating {
-			display: flex;
-			align-items: center;
-			gap: 6px;
-			margin-bottom: 16px;
-
-			> div:last-child {
-				font-weight: 400;
-			}
-		}
-
 		> p {
 			font-weight: 400;
 			text-transform: capitalize;

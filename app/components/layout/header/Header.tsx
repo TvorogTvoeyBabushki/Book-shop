@@ -39,7 +39,7 @@ const Header: FunctionComponent = () => {
 						<button>
 							<img src='/user.svg' alt='user' />
 						</button>
-						<button>
+						<button onClick={() => push('/pages/shopping-cart')}>
 							<img src='/shop-bag.svg' alt='shop-bag' />
 						</button>
 					</div>
