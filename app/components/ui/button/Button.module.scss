@@ -13,4 +13,17 @@
 		border-color: $btn-hover;
 		color: $gray;
 	}
+
+	&.auth {
+		max-width: 100%;
+		padding: 15px 0;
+		font-size: 0.875rem;
+		color: #fff;
+		background-color: $purple-light;
+		border: none;
+
+		&:hover {
+			background-color: rgba($purple-light, 0.7);
+		}
+	}
 }
