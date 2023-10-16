@@ -1,0 +1,52 @@
+@import '@/styles/variables';
+
+.book_item {
+	display: flex;
+	gap: 36px;
+	width: 39%;
+	position: relative;
+	z-index: 3;
+
+	> img {
+		max-width: 212px;
+		height: 300px;
+		box-shadow: $box-shadow;
+	}
+
+	> div {
+		align-self: center;
+
+		> h4 {
+			font-weight: 400;
+			margin-bottom: 5px;
+		}
+
+		> h3 {
+			font-size: 1rem;
+			color: $black;
+			margin-bottom: 3px;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
+			white-space: pre-wrap;
+		}
+
+		> p {
+			font-weight: 400;
+			text-transform: capitalize;
+			margin-bottom: 16px;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
+			white-space: pre-wrap;
+		}
+
+		.price {
+			font-size: 1rem;
+			color: $black;
+			margin-bottom: 16px;
+		}
+	}
+}
