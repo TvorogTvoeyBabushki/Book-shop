@@ -17,3 +17,5 @@ export const categoriesSlice = createSlice({
 		}
 	}
 })
+
+export const categoriesActions = { ...categoriesSlice.actions }

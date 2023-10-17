@@ -1,6 +1,6 @@
 'use client'
 
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import clsx from 'clsx'
 
@@ -33,6 +33,10 @@ const Categories: FunctionComponent = () => {
 	const { categories } = useSelector(selectCategories)
 	const { SORT_CATEGORIES } = useAction()
 
+	useEffect(() => {
+		SORT_CATEGORIES('Architecture')
+	}, [])
+
 	return (
 		<nav className={styles.categories}>
 			<ul>
@@ -46,6 +50,7 @@ const Categories: FunctionComponent = () => {
 						<a
 							onClick={e => {
 								e.preventDefault()
+								if (category === categories) return
 
 								SORT_CATEGORIES(category)
 							}}

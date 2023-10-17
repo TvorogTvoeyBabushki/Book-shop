@@ -26,4 +26,14 @@
 			background-color: rgba($purple-light, 0.7);
 		}
 	}
+
+	&.cart {
+		border-color: $btn-hover;
+		color: $gray;
+
+		&:hover {
+			border-color: $purple;
+			color: $purple;
+		}
+	}
 }

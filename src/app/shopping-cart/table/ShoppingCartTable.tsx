@@ -3,11 +3,9 @@ import Image from 'next/image'
 import clsx from 'clsx'
 
 import BookCatalogItemRating from '../../../components/home/book-catalog/item/rating/BookCatalogItemRating'
-
-import { currency } from '../../../utils/currency'
-
 import { INewBookDataProps } from '../useShoppingCart'
 import styles from './ShoppingCartTable.module.scss'
+import { currency } from '../../../utils/currency'
 
 interface IShoppingCartTableProps {
 	newBookData: INewBookDataProps[]
@@ -25,10 +23,29 @@ const ShoppingCartTable: FunctionComponent<IShoppingCartTableProps> = ({
 			case 'item':
 				return (
 					<>
-						<Image src={book.image} alt={book.title} width={102} height={145} />
+						<Image
+							src={
+								book.volumeInfo.imageLinks?.thumbnail
+									? book.volumeInfo.imageLinks?.thumbnail
+									: '/book3.png'
+							}
+							alt={book.volumeInfo.title}
+							width={102}
+							height={145}
+						/>
 						<div>
-							<h3>{book.title}</h3>
-							<h4>{book.author}</h4>
+							<h3>{book.volumeInfo.title}</h3>
+							{book.volumeInfo.authors?.length ? (
+								<h4>
+									{book.volumeInfo.authors.map((author, index) =>
+										index === book.volumeInfo.authors.length - 1
+											? author
+											: `${author}, `
+									)}
+								</h4>
+							) : (
+								''
+							)}
 							<BookCatalogItemRating book={book} />
 						</div>
 					</>
@@ -48,7 +65,9 @@ const ShoppingCartTable: FunctionComponent<IShoppingCartTableProps> = ({
 					</div>
 				)
 			case 'price':
-				return currency(book.price)
+				return book.saleInfo.retailPrice?.amount
+					? currency(book.saleInfo.retailPrice.amount)
+					: ''
 			default:
 				return 'Shipping: delivery'
 		}
@@ -58,9 +77,9 @@ const ShoppingCartTable: FunctionComponent<IShoppingCartTableProps> = ({
 			{tableTitle.map(title => (
 				<div key={title} className={styles.column}>
 					<h4>{title}</h4>
-					{bookData.map(book => (
+					{bookData.map((book, index) => (
 						<div
-							key={book.id}
+							key={index}
 							className={clsx(styles.row, {
 								[styles[title]]: title
 							})}

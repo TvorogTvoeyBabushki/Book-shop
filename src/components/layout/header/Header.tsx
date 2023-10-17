@@ -1,40 +1,22 @@
 'use client'
 
-import { FunctionComponent, useEffect, useRef, useState } from 'react'
+import { FunctionComponent } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 
-import Auth from '../../ui/auth/Auth'
-
+import HeaderPanel from './panel/HeaderPanel'
 import styles from './Header.module.scss'
 
 const navItems = ['books', 'audiobooks', 'Stationery & gifts', 'blog']
 
 const Header: FunctionComponent = () => {
-	const [isShowAuth, setIsShowAuth] = useState<boolean>(false)
-	const { push } = useRouter()
 	const pathname = usePathname()
-	const authRef = useRef<HTMLDivElement | null>(null)
+	const { push } = useRouter()
 
 	const handleLinkHome = () => {
 		if (pathname !== '/') {
 			push('/')
 		}
 	}
-
-	useEffect(() => {
-		document.addEventListener('click', e => {
-			if (!authRef.current?.contains(e.target as Node)) {
-				setIsShowAuth(false)
-			}
-		})
-
-		return () =>
-			document.removeEventListener('click', e => {
-				if (!authRef.current?.contains(e.target as Node)) {
-					setIsShowAuth(false)
-				}
-			})
-	}, [])
 
 	return (
 		<header className={styles.header}>
@@ -54,22 +36,7 @@ const Header: FunctionComponent = () => {
 						</ul>
 					</nav>
 
-					<div className={styles.panel}>
-						<div ref={authRef} className={styles.auth}>
-							<button
-								onClick={() =>
-									!isShowAuth ? setIsShowAuth(true) : setIsShowAuth(false)
-								}
-							>
-								<img className='auth__img' src='/user.svg' alt='user' />
-							</button>
-							{isShowAuth && <Auth title='Log in' />}
-						</div>
-
-						<button onClick={() => push('/shopping-cart')}>
-							<img src='/shop-bag.svg' alt='shop-bag' />
-						</button>
-					</div>
+					<HeaderPanel />
 				</div>
 			</div>
 		</header>

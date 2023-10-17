@@ -5,17 +5,14 @@ import {
 	PAUSE,
 	PERSIST,
 	PURGE,
-	REGISTER
+	REGISTER,
+	persistStore
 } from 'redux-persist'
 
-import { categoriesSlice } from './categories/categories.slice'
-import { booksSlice } from './books/books.slice'
+import { persistedReducer } from './reducer'
 
 export const store = configureStore({
-	reducer: {
-		categories: categoriesSlice.reducer,
-		books: booksSlice.reducer
-	},
+	reducer: persistedReducer,
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
 			serializableCheck: {
@@ -23,5 +20,6 @@ export const store = configureStore({
 			}
 		})
 })
+export const persistor = persistStore(store)
 
 export type RootState = ReturnType<typeof store.getState>

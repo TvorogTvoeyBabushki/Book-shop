@@ -18,8 +18,5 @@ export const POST = async (req: Request) => {
 		)
 	}
 
-	return NextResponse.json(
-		{ message: 'success', token: 'testToken' },
-		{ status: 200 }
-	)
+	return NextResponse.json({ name: 'John Smith', email }, { status: 200 })
 }

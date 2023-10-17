@@ -15,7 +15,8 @@ const Button: FunctionComponent<IButtonProps> = ({
 	return (
 		<button
 			className={clsx(styles.btn, {
-				[styles.auth]: variant === 'auth'
+				[styles.auth]: variant === 'auth',
+				[styles.cart]: variant === 'cart'
 			})}
 			onClick={onClick}
 		>

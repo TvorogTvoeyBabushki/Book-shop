@@ -17,7 +17,18 @@ const initialState: IBooksInitialStateProps = {
 export const booksSlice = createSlice({
 	name: 'books',
 	initialState,
-	reducers: {},
+	reducers: {
+		ADD_BOOK_CART: (store, { payload }: PayloadAction<IBooksDataProps>) => {
+			store.shoppingCartBooks.push(payload)
+		},
+		DELETE_BOOK_CART: (store, { payload }: PayloadAction<IBooksDataProps>) => {
+			store.shoppingCartBooks = store.shoppingCartBooks.filter(
+				book =>
+					book.volumeInfo.authors !== payload.volumeInfo.authors &&
+					book.volumeInfo.title !== payload.volumeInfo.title
+			)
+		}
+	},
 	extraReducers: builder => {
 		builder.addCase(
 			getBooks.fulfilled,
@@ -27,3 +38,5 @@ export const booksSlice = createSlice({
 		)
 	}
 })
+
+export const booksActions = { ...booksSlice.actions }

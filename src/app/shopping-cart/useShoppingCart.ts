@@ -2,19 +2,24 @@
 
 import { useEffect, useMemo, useState } from 'react'
 
-import { IBookDataProps } from '../../components/home/book-catalog/bookData'
+import { IBooksDataProps } from '../api/books/route'
 
-export interface INewBookDataProps extends IBookDataProps {
+export interface INewBookDataProps extends IBooksDataProps {
 	quantity: number
 }
 
-export const useShoppingCart = (bookData: IBookDataProps[]) => {
+export const useShoppingCart = (bookData: IBooksDataProps[]) => {
 	const [newBookData, setNewBookData] = useState<INewBookDataProps[]>(
 		bookData.map(book => ({ ...book, quantity: 1 }))
 	)
 	const [totalPrice, setTotalPrice] = useState<number>(
 		bookData.reduce((acc: number, book) => {
-			return acc + book.price
+			return (
+				acc +
+				(book.saleInfo.retailPrice?.amount
+					? book.saleInfo.retailPrice?.amount
+					: 0)
+			)
 		}, 0)
 	)
 
@@ -23,7 +28,10 @@ export const useShoppingCart = (bookData: IBookDataProps[]) => {
 
 		setNewBookData(prev => {
 			prev = prev.map(item => {
-				if (item.author === book.author && item.title === book.title) {
+				if (
+					item.volumeInfo.authors === book.volumeInfo.authors &&
+					item.volumeInfo.title === book.volumeInfo.title
+				) {
 					variant === 'decrement'
 						? (item = { ...item, quantity: item.quantity - 1 })
 						: (item = { ...item, quantity: item.quantity + 1 })
@@ -37,7 +45,13 @@ export const useShoppingCart = (bookData: IBookDataProps[]) => {
 	useEffect(() => {
 		setTotalPrice(
 			newBookData.reduce((acc: number, book) => {
-				return acc + book.price * book.quantity
+				return (
+					acc +
+					(book.saleInfo.retailPrice?.amount
+						? book.saleInfo.retailPrice?.amount
+						: 0) *
+						book.quantity
+				)
 			}, 0)
 		)
 	}, [newBookData])

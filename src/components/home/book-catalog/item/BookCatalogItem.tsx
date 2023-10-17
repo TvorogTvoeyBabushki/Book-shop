@@ -1,18 +1,45 @@
-import { FunctionComponent } from 'react'
+'use client'
+
+import { FunctionComponent, useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import Image from 'next/image'
-
-import Button from '../../../ui/button/Button'
-
-import { currency } from '../../../../utils/currency'
 
 import { IBooksDataProps } from '@/app/api/books/route'
 
-import BookCatalogItemRating from './rating/BookCatalogItemRating'
-import styles from './BookCatalogItem.module.scss'
+import { selectShoppingCartBooks } from '@/store/useSelect'
 
-const BookCatalogItem: FunctionComponent<{ book: IBooksDataProps }> = ({
-	book
-}) => {
+import { useAction } from '@/hooks/useAction'
+
+import BookCatalogItemRating from './rating/BookCatalogItemRating'
+import { currency } from '../../../../utils/currency'
+import styles from './BookCatalogItem.module.scss'
+import Button from '../../../ui/button/Button'
+
+const BookCatalogItem: FunctionComponent<{
+	book: IBooksDataProps
+}> = ({ book }) => {
+	const { ADD_BOOK_CART, DELETE_BOOK_CART } = useAction()
+	const shoppingCartBooks = useSelector(selectShoppingCartBooks)
+	const [isCartBook, setIsCartBook] = useState<boolean>(false)
+
+	const handleClick = () => {
+		isCartBook
+			? (DELETE_BOOK_CART(book), setIsCartBook(false))
+			: (ADD_BOOK_CART(book), setIsCartBook(true))
+	}
+
+	useEffect(() => {
+		if (
+			shoppingCartBooks.filter(
+				cartBook =>
+					cartBook.volumeInfo.title === book.volumeInfo.title &&
+					cartBook.volumeInfo.authors[0] === book.volumeInfo.authors[0]
+			).length
+		) {
+			setIsCartBook(true)
+		}
+	}, [])
+
 	return (
 		<div className={styles.book_item}>
 			<Image
@@ -47,7 +74,9 @@ const BookCatalogItem: FunctionComponent<{ book: IBooksDataProps }> = ({
 				) : (
 					''
 				)}
-				<Button>buy now</Button>
+				<Button variant={isCartBook ? 'cart' : ''} onClick={handleClick}>
+					{isCartBook ? 'in the cart' : 'buy now'}
+				</Button>
 			</div>
 		</div>
 	)

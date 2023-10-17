@@ -14,6 +14,7 @@ export interface IBooksDataProps {
 			amount: number
 		}
 	}
+	isShoppingCart?: boolean
 }
 
 interface IDataProps {

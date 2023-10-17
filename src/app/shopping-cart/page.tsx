@@ -1,48 +1,20 @@
 'use client'
 
+import { useSelector } from 'react-redux'
 import { NextPage } from 'next'
 
-import { IBookDataProps } from '../../components/home/book-catalog/bookData'
-import Button from '../../components/ui/button/Button'
-import Layout from '../../components/layout/Layout'
-
-import { currency } from '../../utils/currency'
+import { selectShoppingCartBooks } from '@/store/useSelect'
 
 import ShoppingCartTable from './table/ShoppingCartTable'
+import Button from '../../components/ui/button/Button'
 import { useShoppingCart } from './useShoppingCart'
+import Layout from '../../components/layout/Layout'
 import styles from './ShoppingCart.module.scss'
-
-const bookData: IBookDataProps[] = [
-	{
-		id: 1,
-		author: 'Kevin Kwan',
-		title: 'Crazy rich asians',
-		rating: {
-			amountReview: 252,
-			grade: 4
-		},
-		description:
-			'the outrageously funny debut novel about three super-rich, pedigreed Chinese families and the gossip...',
-		price: 4.99,
-		image: '/book2.png'
-	},
-	{
-		id: 2,
-		author: 'Margaret Atwood',
-		title: 'The handmaid’s tale',
-		rating: {
-			amountReview: 1_100_000,
-			grade: 4
-		},
-		description:
-			"This novel can be interpreted as a double narrative, Offred's tale and the handmaids' tales. The night...",
-		price: 6.99,
-		image: '/book3.png'
-	}
-]
+import { currency } from '../../utils/currency'
 
 const ShoppingCart: NextPage = () => {
-	const shoppingCartProps = useShoppingCart(bookData)
+	const shoppingCartBooks = useSelector(selectShoppingCartBooks)
+	const shoppingCartProps = useShoppingCart(shoppingCartBooks)
 
 	return (
 		<Layout>

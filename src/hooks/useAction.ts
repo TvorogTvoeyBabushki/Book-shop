@@ -2,13 +2,10 @@ import { bindActionCreators } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 import { useMemo } from 'react'
 
-import { categoriesSlice } from '@/store/categories/categories.slice'
+import { actions } from '@/store/actions'
 
 export const useAction = () => {
 	const dispatch = useDispatch()
 
-	return useMemo(
-		() => bindActionCreators(categoriesSlice.actions, dispatch),
-		[dispatch]
-	)
+	return useMemo(() => bindActionCreators(actions, dispatch), [dispatch])
 }

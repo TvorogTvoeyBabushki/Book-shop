@@ -1,8 +1,9 @@
 import { FormEvent, useMemo, useState } from 'react'
 import axios from 'axios'
 
-import { IReqBodyProps } from '../../../app/api/auth/route'
+import { useAction } from '@/hooks/useAction'
 
+import { IReqBodyProps } from '../../../app/api/auth/route'
 import { validateAuth } from '../../../utils/validateAuth'
 
 interface IFieldsValueProps {
@@ -11,6 +12,7 @@ interface IFieldsValueProps {
 }
 
 export const useAuth = () => {
+	const { LOGIN } = useAction()
 	const [validate, setValidate] = useState<string>('')
 	const [fieldsValue, setFieldsValue] = useState<IFieldsValueProps[]>([
 		{ label: 'email', value: '' },
@@ -58,7 +60,7 @@ export const useAuth = () => {
 			const { data } = await axios.post('/api/auth', body, {
 				headers: { 'Content-Type': 'application/json' }
 			})
-			console.log(data)
+			LOGIN(data)
 		} catch (error) {
 			console.log(error)
 		}

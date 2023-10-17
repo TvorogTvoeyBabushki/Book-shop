@@ -1,17 +1,18 @@
+'use client'
+
+import { useSelector } from 'react-redux'
 import { NextPage } from 'next'
 import Image from 'next/image'
 
+import { selectUser } from '@/store/useSelect'
+
 import Button from '../../components/ui/button/Button'
 import Layout from '../../components/layout/Layout'
-
 import styles from './Profile.module.scss'
 
-const userData = {
-	name: 'John Smith',
-	email: 'example@mail.com'
-}
-
 const Profile: NextPage = () => {
+	const { info } = useSelector(selectUser)
+
 	return (
 		<Layout>
 			<main>
@@ -31,11 +32,11 @@ const Profile: NextPage = () => {
 									<div>
 										<div className={styles.name}>
 											<h3>YOUR NAME</h3>
-											<h2>{userData.name}</h2>
+											<h2>{info.name}</h2>
 										</div>
 										<div>
 											<h3>YOUR EMAIL</h3>
-											<h2>{userData.email}</h2>
+											<h2>{info.email}</h2>
 										</div>
 										<Button>EDIT PROFILE</Button>
 									</div>
