@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import { IBooksDataProps } from '@/app/api/books/route'
 
-import { selectShoppingCartBooks } from '@/store/useSelect'
+import { selectShoppingCartBooks, selectUser } from '@/store/useSelect'
 
 import { useAction } from '@/hooks/useAction'
 
@@ -18,8 +18,9 @@ import Button from '../../../ui/button/Button'
 const BookCatalogItem: FunctionComponent<{
 	book: IBooksDataProps
 }> = ({ book }) => {
-	const { ADD_BOOK_CART, DELETE_BOOK_CART } = useAction()
 	const shoppingCartBooks = useSelector(selectShoppingCartBooks)
+	const { isLogin } = useSelector(selectUser)
+	const { ADD_BOOK_CART, DELETE_BOOK_CART } = useAction()
 	const [isCartBook, setIsCartBook] = useState<boolean>(false)
 
 	const handleClick = () => {
@@ -74,7 +75,11 @@ const BookCatalogItem: FunctionComponent<{
 				) : (
 					''
 				)}
-				<Button variant={isCartBook ? 'cart' : ''} onClick={handleClick}>
+				<Button
+					disabled={isLogin ? false : true}
+					variant={isCartBook ? 'cart' : ''}
+					onClick={handleClick}
+				>
 					{isCartBook ? 'in the cart' : 'buy now'}
 				</Button>
 			</div>

@@ -27,7 +27,7 @@ const Slider: FunctionComponent = () => {
 						})}
 						onClick={() => handleArrowClick(arrow)}
 					>
-						<img src='/arrow.png' alt='arrow' />
+						<Image src='/arrow.png' alt='arrow' width={12} height={12} />
 					</div>
 				))}
 				{imageData.map((image, index) => (

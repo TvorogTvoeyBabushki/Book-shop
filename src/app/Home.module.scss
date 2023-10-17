@@ -4,6 +4,9 @@
 }
 
 .book_wrapper {
-	position: relative;
 	margin-bottom: 40px;
+
+	> div {
+		position: relative;
+	}
 }

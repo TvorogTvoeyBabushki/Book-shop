@@ -12,6 +12,7 @@ import { selectShoppingCartBooks, selectUser } from '@/store/useSelect'
 import { useAction } from '@/hooks/useAction'
 
 import styles from './HeaderPanel.module.scss'
+import Image from 'next/image'
 
 const profPanelItems = ['Profile', 'Log out']
 
@@ -50,7 +51,13 @@ const HeaderPanel: FunctionComponent = () => {
 						!isShowAuth ? setIsShowAuth(true) : setIsShowAuth(false)
 					}
 				>
-					<img className='auth__img' src='/user.svg' alt='user' />
+					<Image
+						className='auth__img'
+						src='/user.svg'
+						alt='user'
+						width={12}
+						height={15}
+					/>
 				</button>
 				{isShowAuth && !isLogin && <Auth title='Log in' />}
 				{isLogin && isShowAuth && (
@@ -74,7 +81,7 @@ const HeaderPanel: FunctionComponent = () => {
 			</div>
 
 			<button onClick={() => push('/shopping-cart')}>
-				<img src='/shop-bag.svg' alt='shop-bag' />
+				<Image src='/shop-bag.svg' alt='shop-bag' width={14} height={17} />
 				{shoppingCartBooks.length ? <div>{shoppingCartBooks.length}</div> : ''}
 			</button>
 		</div>

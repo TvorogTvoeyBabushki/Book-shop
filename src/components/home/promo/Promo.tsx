@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react'
+import Image from 'next/image'
 import clsx from 'clsx'
 
 import styles from './Promo.module.scss'
@@ -25,7 +26,7 @@ const Promo: FunctionComponent = () => {
 						})}
 					>
 						<p>{promo.title}</p>
-						<img src='/arrow-long.svg' alt='arrow' />
+						<Image src='/arrow-long.svg' alt='arrow' width={54} height={14} />
 					</div>
 				</a>
 			))}

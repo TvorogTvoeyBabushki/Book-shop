@@ -18,10 +18,10 @@ const Home: NextPage = () => {
 					</section>
 				</div>
 				<section className={styles.book_wrapper}>
-					<div>
-						<Categories />
-					</div>
 					<div className='container'>
+						<div>
+							<Categories />
+						</div>
 						<BookCatalog />
 					</div>
 				</section>

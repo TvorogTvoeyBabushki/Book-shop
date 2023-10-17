@@ -10,6 +10,7 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FunctionComponent<IButtonProps> = ({
 	children,
 	variant,
+	disabled,
 	onClick
 }) => {
 	return (
@@ -18,6 +19,7 @@ const Button: FunctionComponent<IButtonProps> = ({
 				[styles.auth]: variant === 'auth',
 				[styles.cart]: variant === 'cart'
 			})}
+			disabled={disabled}
 			onClick={onClick}
 		>
 			{children}

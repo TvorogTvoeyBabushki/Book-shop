@@ -36,4 +36,8 @@
 			color: $purple;
 		}
 	}
+
+	&:disabled {
+		pointer-events: none;
+	}
 }

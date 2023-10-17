@@ -15,3 +15,6 @@ export const selectCategories = (state: RootState): ICategoriesInitialState =>
 	state.categories
 
 export const selectUser = (state: RootState): IUserInitialState => state.user
+
+export const selectIsLoading = (state: RootState): boolean =>
+	state.books.isLoading

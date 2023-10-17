@@ -5,7 +5,7 @@ import ReduxProvider from '@/store/ReduxProvider'
 
 import '../styles/global.scss'
 
-const inter = Montserrat({ subsets: ['latin'] })
+const montserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
 	title: 'Book shop',
@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={inter.className}>
+			<body className={montserrat.className}>
 				<ReduxProvider>{children}</ReduxProvider>
 			</body>
 		</html>

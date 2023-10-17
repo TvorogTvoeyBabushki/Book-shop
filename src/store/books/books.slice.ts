@@ -7,11 +7,13 @@ import { getBooks } from './books.actions'
 interface IBooksInitialStateProps {
 	books: IBooksDataProps[]
 	shoppingCartBooks: IBooksDataProps[]
+	isLoading: boolean
 }
 
 const initialState: IBooksInitialStateProps = {
 	books: [],
-	shoppingCartBooks: []
+	shoppingCartBooks: [],
+	isLoading: false
 }
 
 export const booksSlice = createSlice({
@@ -30,12 +32,17 @@ export const booksSlice = createSlice({
 		}
 	},
 	extraReducers: builder => {
-		builder.addCase(
-			getBooks.fulfilled,
-			(state, { payload }: PayloadAction<IBooksDataProps[]>) => {
-				state.books = payload
-			}
-		)
+		builder
+			.addCase(getBooks.pending, state => {
+				state.isLoading = true
+			})
+			.addCase(
+				getBooks.fulfilled,
+				(state, { payload }: PayloadAction<IBooksDataProps[]>) => {
+					state.books = payload
+					state.isLoading = false
+				}
+			)
 	}
 })
 
