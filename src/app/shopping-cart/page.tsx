@@ -3,7 +3,7 @@
 import { useSelector } from 'react-redux'
 import { NextPage } from 'next'
 
-import { selectShoppingCartBooks } from '@/store/useSelect'
+import { selectShoppingCartBooks, selectUser } from '@/store/useSelect'
 
 import ShoppingCartTable from './table/ShoppingCartTable'
 import Button from '../../components/ui/button/Button'
@@ -13,6 +13,7 @@ import styles from './ShoppingCart.module.scss'
 import { currency } from '../../utils/currency'
 
 const ShoppingCart: NextPage = () => {
+	const { isLogin } = useSelector(selectUser)
 	const shoppingCartBooks = useSelector(selectShoppingCartBooks)
 	const shoppingCartProps = useShoppingCart(shoppingCartBooks)
 
@@ -27,7 +28,7 @@ const ShoppingCart: NextPage = () => {
 							<h1>{`TOTAL PRICE: ${currency(
 								shoppingCartProps.totalPrice
 							)}`}</h1>
-							<Button>CHECKOUT</Button>
+							<Button disabled={isLogin ? false : true}>CHECKOUT</Button>
 						</div>
 					</section>
 				</div>

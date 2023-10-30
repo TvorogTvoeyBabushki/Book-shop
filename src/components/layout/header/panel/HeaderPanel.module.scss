@@ -59,4 +59,8 @@
 			right: calc(0% - 1px);
 		}
 	}
+
+	@media (max-width: 860px) {
+		max-width: 60px;
+	}
 }

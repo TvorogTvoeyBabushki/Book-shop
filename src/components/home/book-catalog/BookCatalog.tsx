@@ -53,7 +53,7 @@ const BookCatalog: FunctionComponent = () => {
 					index >= amountBooks.pageIndex &&
 					index < amountBooks.maxResults ? (
 						<div>
-							<SkeletonLoader inline count={1} width={440} height={300} />
+							<SkeletonLoader inline count={1}  height={300} />
 						</div>
 					) : (
 						<BookCatalogItem book={book} />
@@ -75,7 +75,7 @@ const BookCatalog: FunctionComponent = () => {
 					</Button>
 				</div>
 			) : amountBooks.maxResults < limitItems && isLoading ? (
-				<SkeletonLoader inline count={6} width={440} height={300} />
+				<SkeletonLoader inline count={6} height={300} />
 			) : (
 				''
 			)}

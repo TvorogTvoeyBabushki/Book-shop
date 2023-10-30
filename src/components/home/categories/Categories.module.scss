@@ -33,4 +33,25 @@
 			}
 		}
 	}
+
+	@media (max-width: 1150px) {
+		padding: 30px 80px;
+		width: 100%;
+		overflow-x: auto;
+
+		> ul {
+			flex-direction: row;
+			align-items: center;
+			width: max-content;
+			gap: 30px;
+		}
+	}
+
+	@media (max-width: 960px) {
+		padding: 30px 40px;
+	}
+
+	@media (max-width: 678px) {
+		padding: 30px 30px 30px 34px;
+	}
 }

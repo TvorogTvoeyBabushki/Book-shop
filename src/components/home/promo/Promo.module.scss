@@ -35,4 +35,8 @@
 		top: calc(0% + 359px);
 		left: calc(100% + 23px);
 	}
+
+	@media (max-width: 1150px) {
+		display: none;
+	}
 }
