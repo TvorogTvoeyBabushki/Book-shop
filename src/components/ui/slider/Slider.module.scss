@@ -8,6 +8,12 @@
 	.img_wrapper {
 		position: relative;
 
+		> div {
+			> img {
+				width: 100%;
+			}
+		}
+
 		.arrow {
 			display: flex;
 			align-items: center;
